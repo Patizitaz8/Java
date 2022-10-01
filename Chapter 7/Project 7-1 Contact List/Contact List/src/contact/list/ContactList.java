@@ -3,9 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package contact.list;
-import java.util.Scanner;
-import java.io.Console;
 
+import java.util.Scanner;
 
 /**
  *
@@ -17,119 +16,34 @@ public class ContactList {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner input = new Scanner (System.in);
-        
-Console c = System.console();
-System.out.println("Welcome to the Contact List application");
-System.out.println("");
+        Scanner sc = new Scanner(System.in);
 
-char choice;
+        System.out.println("Welcome to the Contact List application");
+        System.out.println();
 
-do{
-System.out.print("Enter first name: ");
-String name = c.readLine();
+        String Choice = "y";
 
-System.out.print("Enter last name: ");
-String last = c.readLine();
+        Contact contact = new Contact();
 
-System.out.print("Enter email: ");
-String email = c.readLine();
+        while (Choice.equalsIgnoreCase("y")) {
 
-System.out.print("Enter phone: ");
-String phone = c.readLine();
+            String firstname = contact.getFirstName("Enter first name: ");
+            contact.setFirstName(firstname);
 
-System.out.println("");
+            String lastname = contact.getLastName("Enter last name: ");
+            contact.setLastName(lastname);
 
-Contact print = new Contact(name, last, email, phone);
+            String email = contact.getEmail("Enter email: ");
+            contact.setEmail(email);
 
-print.displayContact();
+            String phone = contact.getPhone("Enter phone: ");
+            contact.setPhone(phone);
 
+            System.out.println("Continue? y/n ");
+            Choice = sc.next();
 
-System.out.println("----------------------------------------\n"
-+ "---------Current Contact-----------------\n" + "-----------------------------------------");
+        }
 
-System.out.println("-----------------------------------");
-
-System.out.println("");
-
-System.out.print("Continue? (y/n): ");
-
-choice = input.next().charAt(0);
-
-System.out.println("");
-}
-while (choice == 'y' || choice == 'Y');
-{
-input.close();
-
-}
-
-}
-}
-
-class Contact{
-
-private String firstname;
-private String lastname;
-private String email;
-private String phone;
-
-public Contact(String firstname, String lastname, String email, String phone){
-this.firstname = firstname;
-this.lastname = lastname;
-this.email = email;
-this.phone = phone;
-}
-
-public void setFirstName(String name)
-{
-this.firstname = name;
-}
-
-public String getFirstName()
-{
-return this.firstname;
-}
-
-public void setLastName(String name)
-{
-this.lastname = name;
-}
-
-public String getLastName()
-{
-return this.lastname;
-}
-
-public void setEmail(String email)
-{
-this.email = email;
-}
-
-public String getEmail()
-{
-return this.email;
-}
-
-public void setPhone(String phone)
-{
-this.phone = phone;
-}
-
-public String getPhone()
-{
-return this.phone;
-}
-
-public void displayContact()
-{
-System.out.println("Current Contact");
-
-System.out.println("Name: " + getFirstName() + " " + getLastName());
-
-System.out.println("Email Address: " + getEmail());
-
-System.out.println("Phone Number: " + getPhone());
+        System.out.println(contact.displayContact());
     }
-    
 }
